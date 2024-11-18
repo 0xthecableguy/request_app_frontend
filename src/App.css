@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box; /* Включает box-sizing для всех элементов */
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -67,34 +71,71 @@ button {
 }
 
 button:hover {
-  background-color: #b3c4d4;
+  background-color: #e0e0e0;
 }
 
 .chat-header {
   color: #b3c4d4;
 }
 
+/* Контейнер для кнопок */
 .button-box {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
+  flex-direction: column;
+  width: 100%;
   padding: 10px;
-  background-color: #b3c4d4;
 }
 
-.button-box button {
-  flex: 1 0 30%; /* Равномерное распределение кнопок в строке */
-  max-width: 30%;
-  padding: 10px;
+/* Первая строка кнопок (основные кнопки) */
+.button-row:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: nowrap;
+}
+
+.button-row:first-child button {
+  flex-grow: 1;
+  min-width: 120px;
+  padding: 12px 0;
   background-color: #15273f;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 14px;
+  text-align: center;
+  min-height: 50px;
 }
 
-.button-box button:hover {
-  background-color: #1f3a5d;
+/* Добавляем эффект при наведении на кнопки в первой строке */
+.button-row:first-child button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Вторая строка кнопок (кнопки действия) */
+.button-row:last-child {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.button-row:last-child button {
+  padding: 12px 20px;
+  background-color: #15273f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+  text-align: center;
+  min-height: 50px;
+}
+
+/* Добавляем эффект при наведении на кнопки в второй строке */
+.button-row:last-child button:hover {
+  background-color: #e0e0e0;
 }
