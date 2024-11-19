@@ -9,13 +9,22 @@ html, body {
   width: 100%;
 }
 
+body {
+  background-image: url('assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #050d1a;
+}
+
 .App {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #050d1a;
+  background-color: transparent;
   padding: 20px;
 }
 
@@ -26,7 +35,7 @@ html, body {
   width: 100%;
   max-width: 600px;
   height: 75vh;
-  background-color: #b3c4d4;
+  background-color: rgba(179, 196, 212, 0.95);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -123,6 +132,7 @@ button:hover {
 }
 
 .button-row:last-child button {
+  flex-grow: 1;
   padding: 12px 20px;
   background-color: #15273f;
   color: white;
