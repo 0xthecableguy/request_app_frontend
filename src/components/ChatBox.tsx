@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface ChatBoxProps {
-    messages: string[];
+    messages: { type: 'user' | 'response'; text: string }[];
     onSendMessage: (message: string) => void;
     buttons: string[];
     actionButtons: string[];
@@ -9,6 +9,7 @@ interface ChatBoxProps {
 
 const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, actionButtons }) => {
     const [message, setMessage] = useState('');
+    const messagesEndRef = useRef<HTMLDivElement>(null);
 
     const handleSendMessage = () => {
         if (message.trim()) {
@@ -27,12 +28,21 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, act
         }
     };
 
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [messages]);
+
     return (
         <div className="chat-box">
             <div className="messages">
                 {messages.map((msg, idx) => (
-                    <div key={idx} className="message">{msg}</div>
+                    <div key={idx} className={`message ${msg.type}`}>
+                        <div className="circle">{msg.type === 'user' ? 'U' : 'R'}</div>
+                        <div className="message-text">{msg.text}</div>
+                    </div>
                 ))}
+                {/* Элемент для фиксации прокрутки в конец */}
+                <div ref={messagesEndRef} />
             </div>
             <div className="input">
                 <input
@@ -47,7 +57,6 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, act
 
             {/* Отображение кнопок */}
             <div className="button-box">
-                {/* Первая строка кнопок */}
                 <div className="button-row">
                     {buttons.map((buttonText, index) => (
                         <button key={index} onClick={() => handleButtonClick(buttonText)}>
@@ -55,7 +64,6 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, act
                         </button>
                     ))}
                 </div>
-                {/* Вторая строка кнопок */}
                 <div className="button-row">
                     {actionButtons.map((buttonText, index) => (
                         <button key={index} onClick={() => handleButtonClick(buttonText)}>
