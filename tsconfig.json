@@ -4,9 +4,9 @@
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
-    "esModuleInterop": true,  // Включаем esModuleInterop
+    "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react-jsx"  // Это нужно для поддержки JSX с React 17 и выше
+    "jsx": "react-jsx"
   }
 }

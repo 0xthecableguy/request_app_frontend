@@ -11,10 +11,9 @@ interface Message {
 const App: React.FC = () => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [buttons, setButtons] = useState<string[]>([]);
-    const [actionButtons, setActionButtons] = useState<string[]>([]); // Массив для кнопок, сгенерированных сервером
+    const [actionButtons, setActionButtons] = useState<string[]>([]);
 
     const handleSendMessage = async (message: string) => {
-        // Добавляем сообщение пользователя
         setMessages((prevMessages) => [
             ...prevMessages,
             { type: 'user', text: message },
@@ -23,15 +22,13 @@ const App: React.FC = () => {
         try {
             const serverResponse = await sendMessageToServer(message);
 
-            // Добавляем ответ сервера
             setMessages((prevMessages) => [
                 ...prevMessages,
                 { type: 'response', text: serverResponse.message || 'Ошибка на сервере' },
             ]);
 
-            // Обновляем кнопки
-            setButtons(serverResponse.buttons || []); // Основные кнопки
-            setActionButtons(serverResponse.action_buttons || []); // Кнопки действий (Назад, Выход)
+            setButtons(serverResponse.buttons || []);
+            setActionButtons(serverResponse.action_buttons || []);
         } catch (error) {
             console.error('Ошибка отправки сообщения:', error);
             setMessages((prevMessages) => [

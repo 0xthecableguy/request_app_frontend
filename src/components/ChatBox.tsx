@@ -19,7 +19,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, act
     };
 
     const handleButtonClick = (buttonText: string) => {
-        onSendMessage(buttonText); // Отправляем текст кнопки на сервер
+        onSendMessage(buttonText);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -41,7 +41,6 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, act
                         <div className="message-text">{msg.text}</div>
                     </div>
                 ))}
-                {/* Элемент для фиксации прокрутки в конец */}
                 <div ref={messagesEndRef} />
             </div>
             <div className="input">
@@ -55,7 +54,6 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, act
                 <button onClick={handleSendMessage}>Отправить</button>
             </div>
 
-            {/* Отображение кнопок */}
             <div className="button-box">
                 <div className="button-row">
                     {buttons.map((buttonText, index) => (
