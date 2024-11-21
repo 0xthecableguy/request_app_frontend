@@ -11,5 +11,6 @@ export default defineConfig({
         secure: false,
       }
     }
-  }
+  },
+  base: '/request_app_frontend',
 });
