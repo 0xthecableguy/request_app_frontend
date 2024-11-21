@@ -5,7 +5,7 @@ export interface ServerResponse {
 }
 
 export const sendMessageToServer = async (message: string): Promise<ServerResponse> => {
-    const response = await fetch('/user_action', {
+    const response = await fetch('http://195.200.18.50:3000/user_action', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
