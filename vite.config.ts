@@ -12,5 +12,8 @@ export default defineConfig({
       }
     }
   },
-  base: '/request_app_frontend',
+  base: '/request_app_frontend/',
+  build: {
+    outDir: 'dist',
+  },
 });
