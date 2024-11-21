@@ -13,6 +13,8 @@ export const sendMessageToServer = async (message: string): Promise<ServerRespon
         body: JSON.stringify({ user_id: 5964236329, action: message }),
     });
 
+    console.log("Response status:", response.status);
+
     if (!response.ok) {
         throw new Error('Ошибка сети');
     }
