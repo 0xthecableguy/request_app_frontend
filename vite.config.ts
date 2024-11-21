@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/user_action': {
-        target: 'http://localhost:3000',
+        target: 'http://195.200.18.50:3000',
         changeOrigin: true,
         secure: false,
       }
