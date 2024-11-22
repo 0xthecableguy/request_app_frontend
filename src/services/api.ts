@@ -3,7 +3,7 @@ export interface ServerResponse {
     message: string;
     buttons: string[];
 }
-// 1
+
 export const sendMessageToServer = async (message: string): Promise<ServerResponse> => {
     const response = await fetch('https://v3.spb.ru/user_action', {
         method: 'POST',
