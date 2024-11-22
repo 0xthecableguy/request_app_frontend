@@ -6,9 +6,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/user_action': {
-        target: 'http://195.200.18.50:3000',
+        target: 'https://v3.spb.ru',
         changeOrigin: true,
-        secure: false,
+        secure: true,
       }
     }
   },
