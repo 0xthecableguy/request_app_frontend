@@ -16,12 +16,28 @@ const App: React.FC = () => {
     const [userId, setUserId] = useState<number | null>(null);
 
     useEffect(() => {
-        if (window.Telegram && window.Telegram.WebApp) {
-            const userId = window.Telegram.WebApp.initDataUnsafe.user.id;
-            setUserId(userId);
-            console.log('User ID from Telegram WebApp:', userId);
+        if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            if (user && user.id) {
+                setUserId(user.id);
+                console.log('User ID from Telegram WebApp:', user.id);
+            } else {
+                console.error('User data not found in Telegram WebApp');
+            }
+        } else {
+            setUserId(303808909);
+            console.log('Using test User ID:', 303808909);
         }
     }, []);
+
+    // // Rollback to if there is no need to define test id
+    // useEffect(() => {
+    //     if (window.Telegram && window.Telegram.WebApp) {
+    //         const userId = window.Telegram.WebApp.initDataUnsafe.user.id;
+    //         setUserId(userId);
+    //         console.log('User ID from Telegram WebApp:', userId);
+    //     }
+    // }, []);
 
     const handleSendMessage = async (message: string) => {
         if (!userId) {
