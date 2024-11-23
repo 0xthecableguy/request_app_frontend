@@ -38,9 +38,17 @@
   color: #eaeceb;
 }
 
+.message.user .circle {
+  background-color: #6d7790;
+}
+
 .message.response .message-text {
   background-color: #505c74;
   color: #eaeceb;
+}
+
+.message.response .circle {
+  background-color: #505c74;
 }
 
 .circle {
@@ -50,7 +58,6 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #3c465f;
   color: #eaeceb;
   font-weight: bold;
   font-size: 14px;

@@ -25,16 +25,16 @@ const App: React.FC = () => {
 
             setMessages((prevMessages) => [
                 ...prevMessages,
-                { type: 'response', text: serverResponse.message || 'Ошибка на сервере' },
+                { type: 'response', text: serverResponse.message || 'Server error' },
             ]);
 
             setButtons(serverResponse.buttons || []);
             setActionButtons(serverResponse.action_buttons || []);
         } catch (error) {
-            console.error('Ошибка отправки сообщения:', error);
+            console.error('Message sending error:', error);
             setMessages((prevMessages) => [
                 ...prevMessages,
-                { type: 'response', text: 'Ошибка связи с сервером.' },
+                { type: 'response', text: 'Connection error with the server.' },
             ]);
         }
     };
