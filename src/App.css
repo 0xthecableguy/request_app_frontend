@@ -122,8 +122,8 @@ button:hover {
 }
 
 .button-row:first-child button {
-  flex-grow: 1;
-  min-width: 120px;
+  flex: 1 1 auto;
+  min-width: 0;
   padding: 12px 0;
   background-color: #2e394b;
   color: #eaeceb;
@@ -131,9 +131,11 @@ button:hover {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 14px;
+  font-size: calc(1vw + 1vh);
   text-align: center;
   min-height: 50px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .button-row:first-child button:hover {
