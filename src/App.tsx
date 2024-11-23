@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ChatBox from './components/ChatBox';
 import './App.css';
 import './styles/index.css'
@@ -13,15 +13,29 @@ const App: React.FC = () => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [buttons, setButtons] = useState<string[]>([]);
     const [actionButtons, setActionButtons] = useState<string[]>([]);
+    const [userId, setUserId] = useState<number | null>(null);
+
+    useEffect(() => {
+        if (window.Telegram && window.Telegram.WebApp) {
+            const userId = window.Telegram.WebApp.initDataUnsafe.user.id;
+            setUserId(userId);
+            console.log('User ID from Telegram WebApp:', userId);
+        }
+    }, []);
 
     const handleSendMessage = async (message: string) => {
+        if (!userId) {
+            console.error("User ID is not available");
+            return;
+        }
+
         setMessages((prevMessages) => [
             ...prevMessages,
             { type: 'user', text: message },
         ]);
 
         try {
-            const serverResponse = await sendMessageToServer(message);
+            const serverResponse = await sendMessageToServer(userId, message);
 
             setMessages((prevMessages) => [
                 ...prevMessages,
