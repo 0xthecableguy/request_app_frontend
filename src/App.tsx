@@ -14,6 +14,7 @@ const App: React.FC = () => {
     const [buttons, setButtons] = useState<string[]>([]);
     const [actionButtons, setActionButtons] = useState<string[]>([]);
     const [userId, setUserId] = useState<number | null>(null);
+    const [username, setUsername] = useState<string>('Unknown User');
 
     useEffect(() => {
         if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
@@ -21,12 +22,16 @@ const App: React.FC = () => {
             if (user && user.id) {
                 setUserId(user.id);
                 console.log('User ID from Telegram WebApp:', user.id);
+                setUsername(user.username || 'Unknown User');
+                console.log('Username from Telegram WebApp:', user.username || 'Unknown User');
             } else {
                 console.error('User data not found in Telegram WebApp');
             }
         } else {
             setUserId(303808909);
             console.log('Using test User ID:', 303808909);
+            setUsername('Test_username');
+            console.log('Using test Username:', 'Test_username');
         }
     }, []);
 
@@ -51,7 +56,7 @@ const App: React.FC = () => {
         ]);
 
         try {
-            const serverResponse = await sendMessageToServer(userId, message);
+            const serverResponse = await sendMessageToServer(userId, message, username);
 
             setMessages((prevMessages) => [
                 ...prevMessages,
