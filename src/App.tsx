@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ChatBox from './components/ChatBox';
 import './App.css';
+import './styles/index.css'
 import { sendMessageToServer } from "./services/api";
 
 interface Message {
