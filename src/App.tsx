@@ -23,11 +23,8 @@ const App: React.FC = () => {
                 if (user && user.id) {
                     setUserId(user.id);
                     setUsername(user.username || 'Unknown User');
-                    console.log('User ID from Telegram WebApp:', user.id);
-                    console.log('Username from Telegram WebApp:', user.username || 'Unknown User');
 
-                    // Отправляем уведомление о запуске
-                    const response = await sendMessageToServer(user.id, 'App opened', user.username || 'Unknown User', true);
+                    const response = await sendMessageToServer(user.id, 'App opened', user.username || 'Unknown User');
                     setMessages([{ type: 'response', text: response.message }]);
                     setButtons(response.buttons || []);
                     setActionButtons(response.action_buttons || []);
@@ -35,8 +32,7 @@ const App: React.FC = () => {
                 }
                 console.error('User data not found in Telegram WebApp');
             }
-            // Запускаем тестовый режим
-            initializeTestUser();
+            await initializeTestUser();
         } catch (error) {
             console.error('Error initializing user:', error);
         }
@@ -47,20 +43,17 @@ const App: React.FC = () => {
         const testUsername = 'Test_username';
         setUserId(testUserId);
         setUsername(testUsername);
-        console.log('Using test User ID:', testUserId);
-        console.log('Using test Username:', testUsername);
 
-        const response = await sendMessageToServer(testUserId, 'App opened', testUsername, true);
+        const response = await sendMessageToServer(testUserId, 'Mini-app initialized', testUsername);
         setMessages([{ type: 'response', text: response.message }]);
         setButtons(response.buttons || []);
         setActionButtons(response.action_buttons || []);
     };
 
     useEffect(() => {
-        const init = async () => {
-            await initializeUser();
-        };
-        init();
+        initializeUser().catch((error) => {
+            console.error('Error initializing user:', error);
+        });
     }, []);
 
     const handleSendMessage = async (message: string) => {
