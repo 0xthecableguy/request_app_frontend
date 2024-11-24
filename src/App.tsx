@@ -40,7 +40,7 @@ const App: React.FC = () => {
 
     const initializeTestUser = async () => {
         const testUserId = 303808909;
-        const testUsername = 'Test_username';
+        const testUsername = 'Test_user';
         setUserId(testUserId);
         setUsername(testUsername);
 
