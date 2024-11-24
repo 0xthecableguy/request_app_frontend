@@ -4,7 +4,7 @@ export interface ServerResponse {
     buttons: string[];
 }
 
-export const sendMessageToServer = async (userId: number, message: string, username: string, isAppOpened: boolean = false): Promise<ServerResponse> => {
+export const sendMessageToServer = async (userId: number, message: string, username: string): Promise<ServerResponse> => {
     const response = await fetch('https://v3.spb.ru/user_action', {
         method: 'POST',
         headers: {
@@ -13,8 +13,7 @@ export const sendMessageToServer = async (userId: number, message: string, usern
         body: JSON.stringify({
             user_id: userId,
             username: username,
-            action: message,
-            is_app_opened: isAppOpened,
+            action: message
         }),
     });
 
