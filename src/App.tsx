@@ -24,7 +24,7 @@ const App: React.FC = () => {
                     setUserId(user.id);
                     setUsername(user.username || 'Unknown User');
 
-                    const response = await sendMessageToServer(user.id, 'App opened', user.username || 'Unknown User');
+                    const response = await sendMessageToServer(user.id, 'Mini-app initialized', user.username || 'Unknown User');
                     setMessages([{ type: 'response', text: response.message }]);
                     setButtons(response.buttons || []);
                     setActionButtons(response.action_buttons || []);
