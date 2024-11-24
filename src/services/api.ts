@@ -4,13 +4,18 @@ export interface ServerResponse {
     buttons: string[];
 }
 
-export const sendMessageToServer = async (userId: number, message: string, username: string): Promise<ServerResponse> => {
+export const sendMessageToServer = async (userId: number, message: string, username: string, isAppOpened: boolean = false): Promise<ServerResponse> => {
     const response = await fetch('https://v3.spb.ru/user_action', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ user_id: userId, username: username, action: message }),
+        body: JSON.stringify({
+            user_id: userId,
+            username: username,
+            action: message,
+            is_app_opened: isAppOpened,
+        }),
     });
 
     console.log("Response status:", response.status);
@@ -19,5 +24,7 @@ export const sendMessageToServer = async (userId: number, message: string, usern
         throw new Error('Network Error');
     }
 
-    return response.json();
+    const data = await response.json();
+    console.log("Response data:", data);
+    return data;
 };

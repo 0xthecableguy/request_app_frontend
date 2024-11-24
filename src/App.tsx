@@ -16,33 +16,52 @@ const App: React.FC = () => {
     const [userId, setUserId] = useState<number | null>(null);
     const [username, setUsername] = useState<string>('Unknown User');
 
-    useEffect(() => {
-        if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
-            const user = window.Telegram.WebApp.initDataUnsafe.user;
-            if (user && user.id) {
-                setUserId(user.id);
-                console.log('User ID from Telegram WebApp:', user.id);
-                setUsername(user.username || 'Unknown User');
-                console.log('Username from Telegram WebApp:', user.username || 'Unknown User');
-            } else {
+    const initializeUser = async () => {
+        try {
+            if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
+                const user = window.Telegram.WebApp.initDataUnsafe.user;
+                if (user && user.id) {
+                    setUserId(user.id);
+                    setUsername(user.username || 'Unknown User');
+                    console.log('User ID from Telegram WebApp:', user.id);
+                    console.log('Username from Telegram WebApp:', user.username || 'Unknown User');
+
+                    // Отправляем уведомление о запуске
+                    const response = await sendMessageToServer(user.id, 'App opened', user.username || 'Unknown User', true);
+                    setMessages([{ type: 'response', text: response.message }]);
+                    setButtons(response.buttons || []);
+                    setActionButtons(response.action_buttons || []);
+                    return;
+                }
                 console.error('User data not found in Telegram WebApp');
             }
-        } else {
-            setUserId(303808909);
-            console.log('Using test User ID:', 303808909);
-            setUsername('Test_username');
-            console.log('Using test Username:', 'Test_username');
+            // Запускаем тестовый режим
+            initializeTestUser();
+        } catch (error) {
+            console.error('Error initializing user:', error);
         }
-    }, []);
+    };
 
-    // // Rollback to if there is no need to define test id
-    // useEffect(() => {
-    //     if (window.Telegram && window.Telegram.WebApp) {
-    //         const userId = window.Telegram.WebApp.initDataUnsafe.user.id;
-    //         setUserId(userId);
-    //         console.log('User ID from Telegram WebApp:', userId);
-    //     }
-    // }, []);
+    const initializeTestUser = async () => {
+        const testUserId = 303808909;
+        const testUsername = 'Test_username';
+        setUserId(testUserId);
+        setUsername(testUsername);
+        console.log('Using test User ID:', testUserId);
+        console.log('Using test Username:', testUsername);
+
+        const response = await sendMessageToServer(testUserId, 'App opened', testUsername, true);
+        setMessages([{ type: 'response', text: response.message }]);
+        setButtons(response.buttons || []);
+        setActionButtons(response.action_buttons || []);
+    };
+
+    useEffect(() => {
+        const init = async () => {
+            await initializeUser();
+        };
+        init();
+    }, []);
 
     const handleSendMessage = async (message: string) => {
         if (!userId) {
