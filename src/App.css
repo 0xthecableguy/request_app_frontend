@@ -29,7 +29,7 @@
 
 .message {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   margin-bottom: 10px;
   min-height: 70px;
 }
@@ -73,6 +73,8 @@
   word-wrap: break-word;
   max-width: calc(100% - 40px);
   min-height: 70px;
+  display: flex;
+  align-items: center;
 }
 
 .input {
