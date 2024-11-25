@@ -84,6 +84,15 @@
 
 .input.hidden {
   justify-content: center;
+  background-color: #2e394d;
+}
+
+.input.hidden::after {
+  content: 'Text input is disabled';
+  color: #b8c3d7;
+  font-size: 14px;
+  font-family: 'Questrial', sans-serif;
+  text-align: center;
 }
 
 input {
@@ -169,7 +178,7 @@ input {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 14px;
+  font-size: calc(1vw + 1vh);
   text-align: center;
   min-height: 50px;
 }
