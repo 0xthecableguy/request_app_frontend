@@ -45,8 +45,8 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, act
                 <div ref={messagesEndRef} />
             </div>
 
-            <div className="input">
-                {canInput ? (
+            <div className={`input ${canInput ? '' : 'hidden'}`}>
+                {canInput && (
                     <>
                         <input
                             type="text"
@@ -57,8 +57,6 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, act
                         />
                         <button onClick={handleSendMessage}>SEND</button>
                     </>
-                ) : (
-                    <div className="placeholder"></div>
                 )}
             </div>
 
