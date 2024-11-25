@@ -87,13 +87,13 @@
   background-color: #6d7790;
 }
 
-.input.hidden::after {
-  /*content: 'Text input is disabled';*/
-  /*color: #b8c3d7;*/
-  font-size: 14px;
-  font-family: 'Questrial', sans-serif;
-  text-align: center;
-}
+/*.input.hidden::after {*/
+/*  !*content: 'Text input is disabled';*!*/
+/*  !*color: #b8c3d7;*!*/
+/*  font-size: 14px;*/
+/*  font-family: 'Questrial', sans-serif;*/
+/*  text-align: center;*/
+/*}*/
 
 input {
   flex-grow: 1;
