@@ -44,20 +44,34 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, act
                 ))}
                 <div ref={messagesEndRef} />
             </div>
-            <div className="input">
-                <input
-                    type="text"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    placeholder="Type your message here..."
-                    disabled={!canInput}
-                />
-                <button onClick={handleSendMessage} disabled={!canInput}>SEND</button>
-            </div>
+
+            {canInput && (
+                <div className="input">
+                    <input
+                        type="text"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        placeholder="Type your message here..."
+                    />
+                    <button onClick={handleSendMessage}>SEND</button>
+                </div>
+            )}
+
+            {/*<div className="input">*/}
+            {/*    <input*/}
+            {/*        type="text"*/}
+            {/*        value={message}*/}
+            {/*        onChange={(e) => setMessage(e.target.value)}*/}
+            {/*        onKeyDown={handleKeyDown}*/}
+            {/*        placeholder="Type your message here..."*/}
+            {/*        disabled={!canInput}*/}
+            {/*    />*/}
+            {/*    <button onClick={handleSendMessage} disabled={!canInput}>SEND</button>*/}
+            {/*</div>*/}
 
             <div className="button-box">
-            <div className="button-row">
+                <div className="button-row">
                     {buttons.map((buttonText, index) => (
                         <button key={index} onClick={() => handleButtonClick(buttonText)}>
                             {buttonText}
