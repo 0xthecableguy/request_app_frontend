@@ -5,9 +5,10 @@ interface ChatBoxProps {
     onSendMessage: (message: string) => void;
     buttons: string[];
     actionButtons: string[];
+    canInput: boolean;
 }
 
-const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, actionButtons }) => {
+const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, actionButtons, canInput }) => {
     const [message, setMessage] = useState('');
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -50,12 +51,13 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, act
                     onChange={(e) => setMessage(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Type your message here..."
+                    disabled={!canInput}
                 />
-                <button onClick={handleSendMessage}>SEND</button>
+                <button onClick={handleSendMessage} disabled={!canInput}>SEND</button>
             </div>
 
             <div className="button-box">
-                <div className="button-row">
+            <div className="button-row">
                     {buttons.map((buttonText, index) => (
                         <button key={index} onClick={() => handleButtonClick(buttonText)}>
                             {buttonText}

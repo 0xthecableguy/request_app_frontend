@@ -2,6 +2,7 @@ export interface ServerResponse {
     action_buttons: string[];
     message: string;
     buttons: string[];
+    can_input: boolean;
 }
 
 export const sendMessageToServer = async (userId: number, message: string, username: string): Promise<ServerResponse> => {

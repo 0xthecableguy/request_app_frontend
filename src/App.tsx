@@ -15,6 +15,7 @@ const App: React.FC = () => {
     const [actionButtons, setActionButtons] = useState<string[]>([]);
     const [userId, setUserId] = useState<number | null>(null);
     const [username, setUsername] = useState<string>('Unknown User');
+    const [canInput, setCanInput] = useState<boolean>(true);
 
     const initializeUser = async () => {
         try {
@@ -28,6 +29,7 @@ const App: React.FC = () => {
                     setMessages([{ type: 'response', text: response.message }]);
                     setButtons(response.buttons || []);
                     setActionButtons(response.action_buttons || []);
+                    setCanInput(response.can_input);
                     return;
                 }
                 console.error('User data not found in Telegram WebApp');
@@ -48,6 +50,7 @@ const App: React.FC = () => {
         setMessages([{ type: 'response', text: response.message }]);
         setButtons(response.buttons || []);
         setActionButtons(response.action_buttons || []);
+        setCanInput(response.can_input);
     };
 
     useEffect(() => {
@@ -77,6 +80,7 @@ const App: React.FC = () => {
 
             setButtons(serverResponse.buttons || []);
             setActionButtons(serverResponse.action_buttons || []);
+            setCanInput(serverResponse.can_input);
         } catch (error) {
             console.error('Message sending error:', error);
             setMessages((prevMessages) => [
@@ -94,6 +98,7 @@ const App: React.FC = () => {
                 onSendMessage={handleSendMessage}
                 buttons={buttons}
                 actionButtons={actionButtons}
+                canInput={canInput}
             />
         </div>
     );
