@@ -75,9 +75,15 @@
 
 .input {
   display: flex;
+  align-items: center;
   padding: 10px;
   background-color: #2e394d;
   border-top: 1px solid #505c74;
+  min-height: 50px;
+}
+
+.input.hidden {
+  justify-content: center;
 }
 
 input {
@@ -91,7 +97,7 @@ input {
   font-family: 'Questrial', sans-serif;
 }
 
-button {
+.input button {
   margin-left: 10px;
   padding: 10px 15px;
   background-color: #505c74;
@@ -104,7 +110,7 @@ button {
   font-size: 18px;
 }
 
-button:hover {
+.input button:hover {
   background-color: #6d7790;
 }
 
