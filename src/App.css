@@ -84,12 +84,12 @@
 
 .input.hidden {
   justify-content: center;
-  background-color: #2e394d;
+  background-color: #6d7790;
 }
 
 .input.hidden::after {
-  content: 'Text input is disabled';
-  color: #b8c3d7;
+  /*content: 'Text input is disabled';*/
+  /*color: #b8c3d7;*/
   font-size: 14px;
   font-family: 'Questrial', sans-serif;
   text-align: center;
