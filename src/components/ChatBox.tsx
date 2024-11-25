@@ -52,7 +52,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, act
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         onKeyDown={handleKeyDown}
-                        placeholder="Type your message here..."
+                        placeholder="Type your message here...."
                     />
                     <button onClick={handleSendMessage}>SEND</button>
                 </div>
