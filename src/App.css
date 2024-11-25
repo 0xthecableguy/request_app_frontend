@@ -36,6 +36,7 @@
 .message.user .message-text {
   background-color: #6d7790;
   color: #eaeceb;
+  min-height: 70px;
 }
 
 .message.user .circle {
@@ -45,6 +46,7 @@
 .message.response .message-text {
   background-color: #505c74;
   color: #eaeceb;
+  min-height: 70px;
 }
 
 .message.response .circle {
