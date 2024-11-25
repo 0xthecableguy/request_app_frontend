@@ -31,12 +31,12 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  min-height: 70px;
 }
 
 .message.user .message-text {
   background-color: #6d7790;
   color: #eaeceb;
-  min-height: 70px;
 }
 
 .message.user .circle {
@@ -46,7 +46,6 @@
 .message.response .message-text {
   background-color: #505c74;
   color: #eaeceb;
-  min-height: 70px;
 }
 
 .message.response .circle {
@@ -80,33 +79,13 @@
   align-items: center;
   padding: 10px;
   background-color: #2e394d;
-  min-height: 70px;
+  border-top: 1px solid #505c74;
+  min-height: 50px;
 }
 
 .input.hidden {
-  justify-content: center;
-  background-color: #6d7790;
-  min-height: 70px;
-  border: none;
-  box-shadow: none;
+  display: none;
 }
-
-input {
-  outline: none;
-}
-
-input:focus {
-  border: 1px solid #505c74;
-  box-shadow: 0 0 5px rgba(80, 92, 116, 0.5);
-}
-
-/*.input.hidden::after {*/
-/*  !*content: 'Text input is disabled';*!*/
-/*  !*color: #b8c3d7;*!*/
-/*  font-size: 14px;*/
-/*  font-family: 'Questrial', sans-serif;*/
-/*  text-align: center;*/
-/*}*/
 
 input {
   flex-grow: 1;
