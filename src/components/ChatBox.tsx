@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 interface ChatBoxProps {
     messages: { type: 'user' | 'response'; text: string }[];
@@ -39,10 +40,12 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, act
                 {messages.map((msg, idx) => (
                     <div key={idx} className={`message ${msg.type}`}>
                         <div className="circle">{msg.type === 'user' ? 'U' : 'R'}</div>
-                        <div className="message-text">{msg.text}</div>
+                        <div className="message-text">
+                            <ReactMarkdown>{msg.text}</ReactMarkdown>
+                        </div>
                     </div>
                 ))}
-                <div ref={messagesEndRef} />
+                <div ref={messagesEndRef}/>
             </div>
 
             {canInput && (
