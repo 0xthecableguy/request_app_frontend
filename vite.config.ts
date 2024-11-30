@@ -10,11 +10,11 @@ export default defineConfig(({ mode }) => ({
   server: {
     proxy: {
       '/user_action': {
-        target: 'https://v3.spb.ru',
+        target: 'http://localhost:3000',
         changeOrigin: true,
       },
       '/get_user_avatar': {
-        target: 'https://v3.spb.ru',
+        target: 'http://localhost:3000',
         changeOrigin: true,
       },
     },

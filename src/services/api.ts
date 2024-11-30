@@ -33,20 +33,19 @@ export const sendMessageToServer = async (userId: number, message: string, usern
 export const fetchAvatarUrl = async (userId: string): Promise<string | null> => {
     try {
         const response = await fetch(`/get_user_avatar?user_id=${userId}`, {
-            method: 'GET', // Убедитесь, что используем GET
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
         });
 
-        // Проверяем, успешен ли запрос
         if (!response.ok) {
             throw new Error('Failed to fetch avatar');
         }
 
         const data = await response.json();
 
-        return data.avatar_url || null;  // Возвращаем URL аватара, если он есть
+        return data.avatar_url || null;
     } catch (error) {
         console.error('Error fetching avatar:', error);
         return null;
