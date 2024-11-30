@@ -2,7 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 interface ChatBoxProps {
-    messages: { type: 'user' | 'response'; text: string }[];
+    messages: {
+        type: 'user' | 'response';
+        text: string;
+        avatarUrl?: string;
+    }[];
     onSendMessage: (message: string) => void;
     buttons: string[];
     actionButtons: string[];
@@ -39,10 +43,21 @@ const ChatBox: React.FC<ChatBoxProps> = ({ messages, onSendMessage, buttons, act
             <div className="messages">
                 {messages.map((msg, idx) => (
                     <div key={idx} className={`message ${msg.type}`}>
-                        <div className="circle">{msg.type === 'user' ? 'U' : 'R'}</div>
+                        {msg.type === 'response' && (
+                            <div className="circle">R</div>
+                        )}
                         <div className="message-text">
                             <ReactMarkdown>{msg.text}</ReactMarkdown>
                         </div>
+                        {msg.type === 'user' && (
+                            <div className="avatar">
+                                {msg.avatarUrl ? (
+                                    <img src={msg.avatarUrl} alt="User Avatar" className="avatar-image"/>
+                                ) : (
+                                    <div className="circle">U</div>
+                                )}
+                            </div>
+                        )}
                     </div>
                 ))}
                 <div ref={messagesEndRef}/>

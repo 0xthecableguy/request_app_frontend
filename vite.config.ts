@@ -7,4 +7,12 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: 'dist',
   },
+  server: {
+    proxy: {
+      '/user_action': {
+        target: 'https://v3.spb.ru',
+        changeOrigin: true,
+      },
+    },
+  },
 }));
