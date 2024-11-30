@@ -13,6 +13,10 @@ export default defineConfig(({ mode }) => ({
         target: 'https://v3.spb.ru',
         changeOrigin: true,
       },
+      '/get_user_avatar': {
+        target: 'https://v3.spb.ru',
+        changeOrigin: true,
+      },
     },
   },
 }));
