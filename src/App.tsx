@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ChatBox from './components/ChatBox';
 import './App.css';
 import './styles/index.css'
-import { sendMessageToServer } from "./services/api";
+import { sendMessageToServer, fetchAvatarUrl } from "./services/api";
 
 interface Message {
     type: 'user' | 'response';
@@ -16,6 +16,7 @@ const App: React.FC = () => {
     const [userId, setUserId] = useState<number | null>(null);
     const [username, setUsername] = useState<string>('Unknown User');
     const [canInput, setCanInput] = useState<boolean>(true);
+    const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
     const initializeUser = async () => {
         try {
@@ -24,6 +25,9 @@ const App: React.FC = () => {
                 if (user && user.id) {
                     setUserId(user.id);
                     setUsername(user.username || 'Unknown User');
+
+                    const avatar = await fetchAvatarUrl(user.id.toString());
+                    setAvatarUrl(avatar);
 
                     const response = await sendMessageToServer(user.id, 'Mini-app initialized', user.username || 'Unknown User');
                     setMessages([{ type: 'response', text: response.message }]);
@@ -46,6 +50,8 @@ const App: React.FC = () => {
         setUserId(testUserId);
         setUsername(testUsername);
 
+        setAvatarUrl('https://i.ibb.co/DzMYg1f/alien-head-v2.webp');
+
         const response = await sendMessageToServer(testUserId, 'Mini-app initialized', testUsername);
         setMessages([{ type: 'response', text: response.message }]);
         setButtons(response.buttons || []);
@@ -67,7 +73,7 @@ const App: React.FC = () => {
 
         setMessages((prevMessages) => [
             ...prevMessages,
-            { type: 'user', text: message },
+            { type: 'user', text: message, avatarUrl: avatarUrl || null },
         ]);
 
         try {
