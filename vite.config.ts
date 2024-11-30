@@ -7,16 +7,4 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: 'dist',
   },
-  server: {
-    proxy: {
-      '/user_action': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-      },
-      '/get_user_avatar': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-      },
-    },
-  },
 }));
