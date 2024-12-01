@@ -32,7 +32,8 @@ export const sendMessageToServer = async (userId: number, message: string, usern
 
 export const fetchAvatarUrl = async (userId: number): Promise<string | null> => {
     try {
-        const response = await fetch(`https://v3.spb.ru/get_user_avatar?user_id=${userId}`, {
+        const user_id = userId.toString();
+        const response = await fetch(`https://v3.spb.ru/get_user_avatar?user_id=${user_id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
