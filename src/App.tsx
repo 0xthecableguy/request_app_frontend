@@ -23,6 +23,7 @@ const App: React.FC = () => {
             if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
                 const user = window.Telegram.WebApp.initDataUnsafe.user;
                 if (user && user.id) {
+                    console.log('User and user id set up');
                     setUserId(user.id);
                     setUsername(user.username || 'Unknown User');
                     console.log('user_id:', user.id);
