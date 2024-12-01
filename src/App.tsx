@@ -26,7 +26,7 @@ const App: React.FC = () => {
                     setUserId(user.id);
                     setUsername(user.username || 'Unknown User');
 
-                    const avatar = await fetchAvatarUrl(user.id.toString());
+                    const avatar = await fetchAvatarUrl(user.id);
                     setAvatarUrl(avatar);
 
                     const response = await sendMessageToServer(user.id, 'Mini-app initialized', user.username || 'Unknown User');
