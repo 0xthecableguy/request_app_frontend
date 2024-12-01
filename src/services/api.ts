@@ -7,7 +7,7 @@ export interface ServerResponse {
 }
 
 export const sendMessageToServer = async (userId: number, message: string, username: string): Promise<ServerResponse> => {
-    const response = await fetch('/user_action', {
+    const response = await fetch('https://v3.spb.ru/user_action', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ export const sendMessageToServer = async (userId: number, message: string, usern
 
 export const fetchAvatarUrl = async (userId: string): Promise<string | null> => {
     try {
-        const response = await fetch(`/get_user_avatar?user_id=${userId}`, {
+        const response = await fetch(`https://v3.spb.ru/get_user_avatar?user_id=${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
