@@ -26,9 +26,8 @@ const App: React.FC = () => {
                     setUserId(user.id);
                     setUsername(user.username || 'Unknown User');
 
-                    // const avatar = await fetchAvatarUrl(user.id.toString());
-                    // setAvatarUrl(avatar);
-                    setAvatarUrl('https://i.ibb.co/DzMYg1f/alien-head-v2.webp');
+                    const avatar = await fetchAvatarUrl(user.id.toString());
+                    setAvatarUrl(avatar);
 
                     const response = await sendMessageToServer(user.id, 'Mini-app initialized', user.username || 'Unknown User');
                     setMessages([{ type: 'response', text: response.message }]);
