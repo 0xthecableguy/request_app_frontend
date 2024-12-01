@@ -38,7 +38,8 @@ export const fetchAvatarUrl = async (userId: number): Promise<string | null> => 
                 'Content-Type': 'application/json',
             },
         });
-
+        console.log("Fetching avatar URL:", `https://v3.spb.ru/get_user_avatar?user_id=${userId}`);
+        console.log("Avatar fetch response status:", response.status);
         if (!response.ok) {
             throw new Error('Failed to fetch avatar');
         }
