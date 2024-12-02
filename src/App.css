@@ -15,7 +15,7 @@
   width: 100%;
   max-width: 600px;
   height: 75vh;
-  background-color: rgba(184, 195, 215, 0.9);
+  background-color: rgba(234, 236, 235, 0.7);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
@@ -152,7 +152,7 @@ input {
 }
 
 .chat-header {
-  color: #b8c3d7;
+  color: rgba(234, 236, 235, 0.85);
   font-size: 24px;
 }
 
@@ -168,20 +168,21 @@ input {
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 10px;
-  flex-wrap: nowrap;
+  /*flex-wrap: nowrap;*/
 }
 
 .button-row:first-child button {
   flex: 1 1 auto;
   min-width: 0;
-  padding: 12px 0;
-  background-color: #2e394b;
+  padding: 10px;
+  background-color: rgba(46, 57, 75, 0.95);
   color: #eaeceb;
   border: none;
-  border-radius: 5px;
+  border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: calc(1vw + 1vh);
+  font-size: clamp(12px, calc(1vw + 1vh), 14px);
+  max-font-size: 14px;
   text-align: center;
   min-height: 50px;
   overflow: hidden;
@@ -200,13 +201,14 @@ input {
 .button-row:last-child button {
   flex-grow: 1;
   padding: 12px 20px;
-  background-color: #2e394b;
+  background-color: rgba(46, 57, 75, 0.95);
   color: #eaeceb;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: calc(1vw + 1vh);
+  font-size: clamp(12px, calc(1vw + 1vh), 14px);
+  max-font-size: 14px;
   text-align: center;
   min-height: 50px;
 }
