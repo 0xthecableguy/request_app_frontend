@@ -225,7 +225,8 @@ input {
 .start-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 100px;
   height: 100%;
 }
 
@@ -233,7 +234,7 @@ input {
   font-family: 'Permanent Marker', sans-serif;
   font-size: 24px;
   padding: 15px 40px;
-  background-color: #505c74;
+  background-color: rgba(80, 92, 116, 0.9);
   color: #eaeceb;
   border: none;
   border-radius: 25px;
