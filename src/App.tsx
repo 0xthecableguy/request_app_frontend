@@ -17,6 +17,7 @@ const App: React.FC = () => {
     const [username, setUsername] = useState<string>('Unknown User');
     const [canInput, setCanInput] = useState<boolean>(true);
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+    const [isChatVisible, setIsChatVisible] = useState<boolean>(false);
 
     const initializeUser = async () => {
         try {
@@ -67,6 +68,24 @@ const App: React.FC = () => {
         });
     }, []);
 
+    const handleStartClick = async () => {
+        if (!userId) {
+            console.error('User ID is not available');
+            return;
+        }
+
+        try {
+            const response = await sendMessageToServer(userId, 'Start', username);
+            setMessages([{ type: 'response', text: response.message }]);
+            setButtons(response.buttons || []);
+            setActionButtons(response.action_buttons || []);
+            setCanInput(response.can_input);
+            setIsChatVisible(true);
+        } catch (error) {
+            console.error('Error handling Start button click:', error);
+        }
+    };
+
     const handleSendMessage = async (message: string) => {
         if (!userId) {
             console.error("User ID is not available");
@@ -100,14 +119,24 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
-            <h1 className="chat-header">reQuest App</h1>
-            <ChatBox
-                messages={messages}
-                onSendMessage={handleSendMessage}
-                buttons={buttons}
-                actionButtons={actionButtons}
-                canInput={canInput}
-            />
+            {!isChatVisible ? (
+                <div className="start-container">
+                    <button className="start-button" onClick={handleStartClick}>
+                        START
+                    </button>
+                </div>
+            ) : (
+                <>
+                    <h1 className="chat-header">reQuest App</h1>
+                    <ChatBox
+                        messages={messages}
+                        onSendMessage={handleSendMessage}
+                        buttons={buttons}
+                        actionButtons={actionButtons}
+                        canInput={canInput}
+                    />
+                </>
+            )}
         </div>
     );
 };
